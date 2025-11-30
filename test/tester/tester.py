@@ -1,13 +1,20 @@
 import subprocess
 import os, signal
 import tests
-import Results
+from Results import Results
 
-def print_results(results: Results.Results):
+colors = {
+	"Red": "\x1b[31;5;1m",
+	"Green": "\x1b[32;5;1m",
+	"Reset": "\x1b[0m"
+}
+
+def print_results(results: Results):
 	print("\tBasic: (Availability test only)")
-	print(f"\t\t — [{("✗", "✓")[results.availability > 99.5]}]", f"(Availability: {results.availability}% vs 99.5%)")
+	passed:bool = results.availability > 99.5
+	print(colors[("Red", "Green")[passed]], f"\t\t — [{("✗", "✓")[passed]}]", f"(Availability: {results.availability}% vs 99.5%)", colors["Reset"])
 	results.basic_total = 1
-	results.basic_passed += (0, 1)[results.availability > 99.5]
+	results.basic_passed += passed
 
 if __name__ == "__main__":
 	""" Run Webserver first """
@@ -51,7 +58,7 @@ if __name__ == "__main__":
 
 	""" Print amount of tests passed """
 	print("Tests passed: ")
-	print(f"\t Basic: {basic_tests_passed}/{basic_tests_total}")
+	print("\t Basic:" + colors[("Red", "Green")[basic_tests_passed == basic_tests_total]], f"{basic_tests_passed}/{basic_tests_total}")
 
 	""" Kill webserv after finishing """
 	os.kill(webserv.pid, signal.SIGSTOP)
