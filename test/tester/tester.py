@@ -58,7 +58,7 @@ if __name__ == "__main__":
 
 	""" Print amount of tests passed """
 	print("Tests passed: ")
-	print("\t Basic:" + colors[("Red", "Green")[basic_tests_passed == basic_tests_total]], f"{basic_tests_passed}/{basic_tests_total}")
+	print("\t Basic:" + colors[("Red", "Green")[basic_tests_passed == basic_tests_total]], f"{basic_tests_passed}/{basic_tests_total}" + colors["Reset"])
 
 	""" Kill webserv after finishing """
 	os.kill(webserv.pid, signal.SIGSTOP)
