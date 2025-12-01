@@ -14,7 +14,8 @@ def print_results(results: Results):
     """ Print results and record ammount of test passed """
     print("\tBasic: (Availability test only)")
     passed: bool = results.availability > 99.5
-    print(colors[("Red", "Green")[passed]], f"\t\t — [{("✗", "✓")[passed]}]", f"(Availability: {results.availability}% vs 99.5%)", colors["Reset"])
+    print(colors[("Red", "Green")[passed]] + f"\t\t — [{("✗", "✓")[passed]}]",
+          f"(Availability: {results.availability}% vs 99.5%)" + colors["Reset"])
     results.basic_total = 1
     results.basic_passed += passed
 
