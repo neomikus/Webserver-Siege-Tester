@@ -1,5 +1,5 @@
 www
-default.conf
+*.conf*
 webserv
 .env
 __pycache__

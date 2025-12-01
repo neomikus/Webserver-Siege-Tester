@@ -22,7 +22,7 @@ def print_results(results: Results):
 if __name__ == "__main__":
     # Run Webserver first
     print("Executing webserv...")
-    webserv = subprocess.Popen(["./webserv", "default.conf"], 
+    webserv = subprocess.Popen(["./webserv", "server.conf"], 
                                 stdout=subprocess.DEVNULL,
                                 stderr=subprocess.DEVNULL)
     try:
@@ -35,7 +35,7 @@ if __name__ == "__main__":
         print("Webserver failed to execute")
         exit(2)
     
-    print("\n")
+    print("")
 
     # Execute each test in battery
     basic_tests_passed = 0
