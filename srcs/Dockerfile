@@ -1,7 +1,7 @@
 FROM python:3.14
 
-RUN apt update && apt upgrade 
-RUN apt install siege
+RUN apt update && apt upgrade -y
+RUN apt install -y siege
 
 RUN mkdir -p /app/test
 
