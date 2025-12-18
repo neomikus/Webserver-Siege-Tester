@@ -22,7 +22,7 @@ def print_results(results: Results):
 if __name__ == "__main__":
     # Run Webserver first
     print("Executing webserv...")
-    webserv = subprocess.Popen(["./webserv", "server.conf"], 
+    webserv = subprocess.Popen([f"./{os.environ["webserv_exec_name"]}", os.environ["webserv_config_file_name"]], 
                                 stdout=subprocess.DEVNULL,
                                 stderr=subprocess.DEVNULL)
     try:
