@@ -2,4 +2,5 @@ www
 *.conf*
 webserv
 .env
+root
 __pycache__

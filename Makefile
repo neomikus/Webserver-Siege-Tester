@@ -1,11 +1,16 @@
 NAME="webserv-docker-siege"
 
 ENV=srcs/.env
+include $(ENV)
 
 all: build run
 
 build: $(ENV)
-	docker build ./srcs/ --tag=$(NAME)
+	docker build ./srcs/								\
+		--build-arg ROOT_FOLDER=${webserv_root_folder}	\
+		--tag=$(NAME)
+
+env: $(ENV)
 
 $(ENV):
 	echo "webserv_exec_name=webserv" >> $(ENV)
@@ -16,3 +21,6 @@ $(ENV):
 
 run:
 	docker run --env-file $(ENV) -ti $(NAME)
+
+clean:
+	docker container rm $(NAME)
